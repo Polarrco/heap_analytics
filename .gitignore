@@ -1,5 +1,9 @@
 .DS_Store
 
+# Build products
+.build
+.xcodebuild
+
 # Xcode
 #
 *.pbxuser
@@ -17,18 +21,13 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-*.zip
-*.ipa
-fastlane/report.xml
 
-build/*
+Pods/
+Pods/*
+Podfile.lock
 
-*.ipa
-*.dSYM.zip
-*.zip
+.swiftpm
 
-Carthage/*
-!Cartfile
-!Cartfile.private
-!Cartfile.resolved
-
+/Resources/
+Build/
+*.xcodeproj
