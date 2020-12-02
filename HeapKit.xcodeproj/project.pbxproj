@@ -6,6 +6,21 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		7EF8B89525775F24006C1936 /* Distribution */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7EF8B89825775F24006C1936 /* Build configuration list for PBXAggregateTarget "Distribution" */;
+			buildPhases = (
+				7EF8B8A425775F4F006C1936 /* Build For Distribution */,
+			);
+			dependencies = (
+				7EF8B8A025775F2C006C1936 /* PBXTargetDependency */,
+			);
+			name = Distribution;
+			productName = Distribution;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		7162BA8424E4BFE3004E36DE /* AppExceptionCatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162BA8324E4BFE2004E36DE /* AppExceptionCatcher.swift */; };
 		7162BA8724E4C034004E36DE /* AppExceptionCatcherObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162BA8624E4C034004E36DE /* AppExceptionCatcherObjC.m */; };
@@ -26,6 +41,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		7184A46C24C8D55A00C6E8A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7184A45824C8D55A00C6E8A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7184A46024C8D55A00C6E8A8;
+			remoteInfo = HeapKit;
+		};
+		7EF8B89F25775F2C006C1936 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7184A45824C8D55A00C6E8A8 /* Project object */;
 			proxyType = 1;
@@ -214,6 +236,9 @@
 					7184A46924C8D55A00C6E8A8 = {
 						CreatedOnToolsVersion = 11.5;
 					};
+					7EF8B89525775F24006C1936 = {
+						CreatedOnToolsVersion = 12.2;
+					};
 				};
 			};
 			buildConfigurationList = 7184A45B24C8D55A00C6E8A8 /* Build configuration list for PBXProject "HeapKit" */;
@@ -229,6 +254,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				7EF8B89525775F24006C1936 /* Distribution */,
 				7184A46024C8D55A00C6E8A8 /* HeapKit */,
 				7184A46924C8D55A00C6E8A8 /* HeapKitTests */,
 			);
@@ -251,6 +277,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7EF8B8A425775F4F006C1936 /* Build For Distribution */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build For Distribution";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "OUTPUT=${SRCROOT}/Build/\n\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" build\n\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" build\n\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${OUTPUT}/\"\n\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\" \"${OUTPUT}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\n\nlipo -create -output \"${OUTPUT}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\ncd \"${OUTPUT}\" && zip -r HeapKit.framework.zip HeapKit.framework\n\nrm -rf \"${OUTPUT}/HeapKit.build\" \"${OUTPUT}/XCBuildData\" \"${OUTPUT}/${PROJECT_NAME}.framework\"\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7184A45D24C8D55A00C6E8A8 /* Sources */ = {
@@ -278,6 +325,11 @@
 			isa = PBXTargetDependency;
 			target = 7184A46024C8D55A00C6E8A8 /* HeapKit */;
 			targetProxy = 7184A46C24C8D55A00C6E8A8 /* PBXContainerItemProxy */;
+		};
+		7EF8B8A025775F2C006C1936 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7184A46024C8D55A00C6E8A8 /* HeapKit */;
+			targetProxy = 7EF8B89F25775F2C006C1936 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -525,6 +577,24 @@
 			};
 			name = Release;
 		};
+		7EF8B89625775F24006C1936 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X3X5633H92;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7EF8B89725775F24006C1936 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X3X5633H92;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -551,6 +621,15 @@
 			buildConfigurations = (
 				7184A47924C8D55A00C6E8A8 /* Debug */,
 				7184A47A24C8D55A00C6E8A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EF8B89825775F24006C1936 /* Build configuration list for PBXAggregateTarget "Distribution" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF8B89625775F24006C1936 /* Debug */,
+				7EF8B89725775F24006C1936 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
