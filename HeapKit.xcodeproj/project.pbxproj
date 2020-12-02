@@ -14,7 +14,6 @@
 				7EF8B8A425775F4F006C1936 /* Build For Distribution */,
 			);
 			dependencies = (
-				7EF8B8A025775F2C006C1936 /* PBXTargetDependency */,
 			);
 			name = Distribution;
 			productName = Distribution;
@@ -41,13 +40,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		7184A46C24C8D55A00C6E8A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7184A45824C8D55A00C6E8A8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7184A46024C8D55A00C6E8A8;
-			remoteInfo = HeapKit;
-		};
-		7EF8B89F25775F2C006C1936 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7184A45824C8D55A00C6E8A8 /* Project object */;
 			proxyType = 1;
@@ -295,7 +287,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "OUTPUT=${SRCROOT}/Build/\n\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" build\n\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" build\n\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${OUTPUT}/\"\n\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\" \"${OUTPUT}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\n\nlipo -create -output \"${OUTPUT}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\ncd \"${OUTPUT}\" && zip -r HeapKit.framework.zip HeapKit.framework\n\nrm -rf \"${OUTPUT}/HeapKit.build\" \"${OUTPUT}/XCBuildData\" \"${OUTPUT}/${PROJECT_NAME}.framework\"\n\n";
+			shellScript = "OUTPUT=${SRCROOT}/Build/\n\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration Release -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" build\n\nxcodebuild -target \"${PROJECT_NAME}\" -arch x86_64 -configuration Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\ncp -R \"${BUILD_DIR}/Release-iphoneos/${PROJECT_NAME}.framework\" \"${OUTPUT}/\"\n\ncp -R \"${BUILD_DIR}/Release-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\" \"${OUTPUT}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\n\nlipo -create -output \"${OUTPUT}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/Release-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/Release-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\ncd \"${OUTPUT}\" && zip -r HeapKit.framework.zip HeapKit.framework\n\nrm -rf \"${OUTPUT}/HeapKit.build\" \"${OUTPUT}/XCBuildData\" \"${OUTPUT}/${PROJECT_NAME}.framework\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -325,11 +317,6 @@
 			isa = PBXTargetDependency;
 			target = 7184A46024C8D55A00C6E8A8 /* HeapKit */;
 			targetProxy = 7184A46C24C8D55A00C6E8A8 /* PBXContainerItemProxy */;
-		};
-		7EF8B8A025775F2C006C1936 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7184A46024C8D55A00C6E8A8 /* HeapKit */;
-			targetProxy = 7EF8B89F25775F2C006C1936 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
